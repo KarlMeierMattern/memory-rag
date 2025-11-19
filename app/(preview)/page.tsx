@@ -123,7 +123,7 @@ export default function Chat() {
           <div className="flex flex-col w-full justify-between gap-2">
             <form onSubmit={handleSubmit} className="flex space-x-2">
               <Input
-                className={`bg-neutral-100 text-base w-full text-neutral-700 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:text-neutral-300`}
+                className={`bg-neutral-100 text-sm w-full text-neutral-700 dark:bg-neutral-700 dark:placeholder:text-neutral-400 dark:text-neutral-300`}
                 minLength={3}
                 required
                 value={input}
@@ -178,7 +178,7 @@ const AssistantMessage = ({ message }: { message: UIMessage | undefined }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="whitespace-pre-wrap font-mono anti text-sm text-neutral-800 dark:text-neutral-200 overflow-hidden"
+        className="whitespace-pre-wrap anti text-sm text-neutral-800 dark:text-neutral-200 overflow-hidden"
         id="markdown"
       >
         <MemoizedReactMarkdown
