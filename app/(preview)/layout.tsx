@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
+import { Roboto_Mono } from "next/font/google";
+
+export const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+});
 
 import "./globals.css";
-
-export const metadata: Metadata = {
-  metadataBase: new URL("https://ai-sdk-preview-rag.vercel.app"),
-  title: "Retrieval Augmented Generation Preview",
-  description:
-    "Augment language model generations with vector based retrieval using the Vercel AI SDK",
-};
 
 export default function RootLayout({
   children,
@@ -15,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={robotoMono.variable}>
       <body>{children}</body>
     </html>
   );
