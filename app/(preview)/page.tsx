@@ -6,7 +6,6 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ReactMarkdown, { Options } from "react-markdown";
 import React from "react";
-import ProjectOverview from "@/components/project-overview";
 import { LoadingIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -105,9 +104,8 @@ export default function Chat() {
     .slice(-1)[0];
 
   return (
-    <div className="flex justify-center items-start sm:pt-16 min-h-screen w-full dark:bg-neutral-900 px-4 md:px-0 py-4">
+    <div className="flex justify-center items-center sm:pt-16 min-h-screen w-full dark:bg-neutral-900 px-4 md:px-0 py-4">
       <div className="flex flex-col items-center w-full max-w-[500px]">
-        <ProjectOverview />
         <motion.div
           animate={{
             minHeight: isExpanded ? 200 : 0,
@@ -119,9 +117,7 @@ export default function Chat() {
           }}
           className={cn(
             "rounded-lg w-full ",
-            isExpanded
-              ? "bg-neutral-200 dark:bg-neutral-800"
-              : "bg-transparent",
+            isExpanded ? "bg-neutral-200 dark:bg-neutral-800" : "bg-transparent"
           )}
         >
           <div className="flex flex-col w-full justify-between gap-2">
@@ -131,7 +127,7 @@ export default function Chat() {
                 minLength={3}
                 required
                 value={input}
-                placeholder={"Ask me anything..."}
+                placeholder={"Store / ask me something..."}
                 onChange={(e) => setInput(e.target.value)}
               />
             </form>
@@ -203,8 +199,8 @@ const Loading = ({ tool }: { tool?: string }) => {
     tool === "getInformation"
       ? "Getting information"
       : tool === "addResource"
-        ? "Adding information"
-        : "Thinking";
+      ? "Adding information"
+      : "Thinking";
 
   return (
     <AnimatePresence mode="wait">
@@ -232,5 +228,5 @@ const MemoizedReactMarkdown: React.FC<Options> = React.memo(
   ReactMarkdown,
   (prevProps, nextProps) =>
     prevProps.children === nextProps.children &&
-    prevProps.className === nextProps.className,
+    prevProps.className === nextProps.className
 );
