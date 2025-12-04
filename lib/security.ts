@@ -63,7 +63,7 @@ export async function validateRequest(
     }
 
     // Request is valid - rate limit headers are available but not needed here
-    // since we're not returning them in the response
+    // validateRequest returns null for valid requests
     return null;
   } catch (error) {
     // If Redis fails, allow the request (fail open)
