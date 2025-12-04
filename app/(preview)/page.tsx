@@ -16,8 +16,13 @@ export default function Chat() {
     onToolCall({ toolCall }) {
       console.log("Tool call:", toolCall);
     },
-    onError: () => {
-      toast.error("You've been rate limited, please try again later!");
+    onError: (error) => {
+      const message = error.message || "An error occurred";
+      if (message.includes("429") || message.includes("Rate limit")) {
+        toast.error("Rate limit exceeded, please try again later");
+      } else {
+        toast.error("An error occurred, please try again");
+      }
     },
   });
 

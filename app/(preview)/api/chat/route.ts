@@ -1,5 +1,6 @@
 import { createResource } from "@/lib/actions/resources";
 import { findRelevantContent } from "@/lib/ai/embedding";
+import { validateRequest } from "@/lib/security";
 import {
   convertToModelMessages,
   generateObject,
@@ -8,12 +9,19 @@ import {
   tool,
   UIMessage,
 } from "ai";
+import { NextRequest } from "next/server";
 import { z } from "zod";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  // Security validation
+  const securityError = await validateRequest(req);
+  if (securityError) {
+    return securityError;
+  }
+
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
